@@ -15,8 +15,6 @@ const HEX_CHARS = "1234567890abcdefABCDEF"
 const threshold = 10
 
 const b64_minimum = 4.5
-
-//const b64_minimum = 2.5
 const hex_minimum = 3.0
 
 var verbose bool = true
@@ -50,8 +48,6 @@ func entropyfind(folder string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	//WriteTextFile(filepath.Join(resultdir, "alldiffs.txt"), allres)
 }
 
 // https://stackoverflow.com/questions/39862613/how-to-split-a-string-by-multiple-delimiters
@@ -85,7 +81,6 @@ func parseTextLine(row int, line string) int {
 
 		for _, bs := range base64_strings {
 			b64_entropy := shannon_entropy(bs, BASE64_CHARS)
-			//fmt.Printf("[DBG]%v for B64 %s\n", b64_entropy, bs)
 
 			if b64_entropy > b64_minimum {
 				//strings_found = append(strings_found, bs)
@@ -106,7 +101,6 @@ func parseTextLine(row int, line string) int {
 		}
 		for _, bs := range hex_strings {
 			hex_entropy := shannon_entropy(bs, HEX_CHARS)
-			//fmt.Printf("[DBG]%v for HEX %s\n", hex_entropy, bs)
 
 			if hex_entropy > hex_minimum {
 				//strings_found = append(strings_found, bs)
@@ -131,7 +125,6 @@ func parseTextLine(row int, line string) int {
 }
 
 func shannon_entropy(data, baseline string) float64 {
-	//rs := []rune(data)
 	bsrs := []rune(baseline)
 	entropy := 0.0
 
